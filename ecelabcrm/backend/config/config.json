@@ -1,0 +1,41 @@
+{
+  "development": {
+    "username": "arelbebek_SQLLogin_1",
+    "password": "73i5tzc1hv",
+    "database": "ECELABCRM",
+    "host": "ECELABCRM.mssql.somee.com",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "trustServerCertificate": true,
+        "encrypt": true
+      }
+    }
+  },
+  "test": {
+    "username": "arelbebek_SQLLogin_1",
+    "password": "73i5tzc1hv",
+    "database": "ECELABCRM",
+    "host": "ECELABCRM.mssql.somee.com",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "trustServerCertificate": true,
+        "encrypt": true
+      }
+    }
+  },
+  "production": {
+    "username": "arelbebek_SQLLogin_1",
+    "password": "73i5tzc1hv",
+    "database": "ECELABCRM",
+    "host": "ECELABCRM.mssql.somee.com",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "trustServerCertificate": true,
+        "encrypt": true
+      }
+    }
+  }
+}

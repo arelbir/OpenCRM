@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+		"name": "CRM API",
+		"description": "CRM Uygulaması API Endpointleri",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Müşteriler",
+			"item": [
+				{
+					"name": "Tüm Müşterileri Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/customers",
+						"description": "Sistemdeki tüm aktif müşterileri getirir"
+					}
+				},
+				{
+					"name": "Müşteri Detayı Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/customers/:id",
+						"description": "Belirtilen ID'ye sahip müşterinin detaylarını getirir"
+					}
+				},
+				{
+					"name": "Yeni Müşteri Ekle",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/customers",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerCode\": \"M001\",\n    \"CompanyName\": \"Örnek Şirket\",\n    \"Country\": \"Türkiye\",\n    \"City\": \"İstanbul\",\n    \"ContactName\": \"Ahmet Yılmaz\",\n    \"Email\": \"ahmet@ornek.com\",\n    \"Phone\": \"+90 555 123 4567\",\n    \"Notes\": \"Örnek müşteri notu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Yeni bir müşteri kaydı oluşturur"
+					}
+				},
+				{
+					"name": "Müşteri Güncelle",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/customers/:id",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CompanyName\": \"Güncellenmiş Şirket\",\n    \"Country\": \"Türkiye\",\n    \"City\": \"Ankara\",\n    \"ContactName\": \"Mehmet Yılmaz\",\n    \"Email\": \"mehmet@ornek.com\",\n    \"Phone\": \"+90 555 987 6543\",\n    \"Notes\": \"Güncellenmiş müşteri notu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen ID'ye sahip müşteriyi günceller"
+					}
+				},
+				{
+					"name": "Müşteri Sil",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/customers/:id",
+						"description": "Belirtilen ID'ye sahip müşteriyi siler (soft delete)"
+					}
+				},
+				{
+					"name": "Excel Şablonu İndir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/customers/template",
+						"description": "Müşteri içe aktarma için Excel şablonunu indirir"
+					}
+				},
+				{
+					"name": "Excel'den Müşteri İçe Aktar",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/customers/import",
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/excel/file.xlsx"
+								}
+							]
+						},
+						"description": "Excel dosyasından müşteri verilerini içe aktarır"
+					}
+				}
+			]
+		},
+		{
+			"name": "Ürünler",
+			"item": [
+				{
+					"name": "Tüm Ürünleri Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products",
+						"description": "Sistemdeki tüm aktif ürünleri getirir"
+					}
+				},
+				{
+					"name": "Son Kullanma Tarihi Yaklaşan Ürünler",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products/expiring",
+						"query": [
+							{
+								"key": "days",
+								"value": "90",
+								"description": "Kaç gün içinde son kullanma tarihi dolacak ürünleri getir"
+							}
+						],
+						"description": "Son kullanma tarihi yaklaşan ürünleri getirir"
+					}
+				},
+				{
+					"name": "Ürün Detayı Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products/:id",
+						"description": "Belirtilen ID'ye sahip ürünün detaylarını getirir"
+					}
+				},
+				{
+					"name": "Yeni Ürün Ekle",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/products",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Brand\": \"Örnek Marka\",\n    \"Code\": \"P001\",\n    \"Description\": \"Örnek ürün açıklaması\",\n    \"Stock\": 100,\n    \"Price\": 199.99,\n    \"ExpiryDate\": \"2025-12-31\",\n    \"MinimumStock\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Yeni bir ürün kaydı oluşturur"
+					}
+				},
+				{
+					"name": "Ürün Güncelle",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/products/:id",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Brand\": \"Güncellenmiş Marka\",\n    \"Description\": \"Güncellenmiş ürün açıklaması\",\n    \"Price\": 299.99,\n    \"MinimumStock\": 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen ID'ye sahip ürünü günceller"
+					}
+				},
+				{
+					"name": "Stok Güncelle",
+					"request": {
+						"method": "PATCH",
+						"url": "{{baseUrl}}/api/products/:id/stock",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen ID'ye sahip ürünün stok miktarını günceller"
+					}
+				},
+				{
+					"name": "Ürün Sil",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/products/:id",
+						"description": "Belirtilen ID'ye sahip ürünü siler (soft delete)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Teklifler",
+			"item": [
+				{
+					"name": "Tüm Teklifleri Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/quotations",
+						"description": "Sistemdeki tüm teklifleri getirir"
+					}
+				},
+				{
+					"name": "Teklif Detayı Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/quotations/:id",
+						"description": "Belirtilen ID'ye sahip teklifin detaylarını getirir"
+					}
+				},
+				{
+					"name": "Yeni Teklif Oluştur",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/quotations",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerID\": 1,\n    \"QuotationDate\": \"2025-01-09\",\n    \"ValidUntil\": \"2025-02-09\",\n    \"TotalAmount\": 1000.00,\n    \"Status\": \"Draft\",\n    \"Notes\": \"Örnek teklif notu\",\n    \"Details\": [\n        {\n            \"ProductID\": 1,\n            \"Quantity\": 2,\n            \"UnitPrice\": 500.00\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Yeni bir teklif kaydı oluşturur"
+					}
+				},
+				{
+					"name": "Teklif Güncelle",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/quotations/:id",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ValidUntil\": \"2025-03-09\",\n    \"Notes\": \"Güncellenmiş teklif notu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen ID'ye sahip teklifi günceller"
+					}
+				},
+				{
+					"name": "Teklif Detayı Ekle",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/quotations/:id/details",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ProductID\": 2,\n    \"Quantity\": 1,\n    \"UnitPrice\": 750.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen teklife yeni bir detay ekler"
+					}
+				},
+				{
+					"name": "Teklif Detayı Güncelle",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/quotations/:id/details/:detailId",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Quantity\": 3,\n    \"UnitPrice\": 450.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen teklif detayını günceller"
+					}
+				},
+				{
+					"name": "Teklif Detayı Sil",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/quotations/:id/details/:detailId",
+						"description": "Belirtilen teklif detayını siler"
+					}
+				},
+				{
+					"name": "Teklif Sil",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/quotations/:id",
+						"description": "Belirtilen ID'ye sahip teklifi siler"
+					}
+				}
+			]
+		},
+		{
+			"name": "Hatırlatıcılar",
+			"item": [
+				{
+					"name": "Tüm Hatırlatıcıları Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders",
+						"description": "Sistemdeki tüm aktif hatırlatıcıları getirir"
+					}
+				},
+				{
+					"name": "Yaklaşan Hatırlatıcılar",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/upcoming",
+						"query": [
+							{
+								"key": "days",
+								"value": "7",
+								"description": "Kaç gün içindeki hatırlatıcıları getir"
+							}
+						],
+						"description": "Yaklaşan hatırlatıcıları getirir"
+					}
+				},
+				{
+					"name": "Müşteriye Ait Hatırlatıcılar",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/customer/:customerId",
+						"description": "Belirtilen müşteriye ait hatırlatıcıları getirir"
+					}
+				},
+				{
+					"name": "Hatırlatıcı Detayı Getir",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/:id",
+						"description": "Belirtilen ID'ye sahip hatırlatıcının detaylarını getirir"
+					}
+				},
+				{
+					"name": "Yeni Hatırlatıcı Ekle",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/reminders",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerID\": 1,\n    \"Title\": \"Örnek Hatırlatıcı\",\n    \"Description\": \"Örnek hatırlatıcı açıklaması\",\n    \"DueDate\": \"2025-01-16\",\n    \"Priority\": \"High\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Yeni bir hatırlatıcı kaydı oluşturur"
+					}
+				},
+				{
+					"name": "Hatırlatıcı Güncelle",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/reminders/:id",
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"Güncellenmiş Hatırlatıcı\",\n    \"Description\": \"Güncellenmiş hatırlatıcı açıklaması\",\n    \"DueDate\": \"2025-01-23\",\n    \"Priority\": \"Medium\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Belirtilen ID'ye sahip hatırlatıcıyı günceller"
+					}
+				},
+				{
+					"name": "Hatırlatıcı Sil",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/reminders/:id",
+						"description": "Belirtilen ID'ye sahip hatırlatıcıyı siler"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

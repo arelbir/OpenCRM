@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "ecelab-crm-collection",
+		"name": "Ecelab CRM API",
+		"description": "Ecelab CRM API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/customers"
+					}
+				},
+				{
+					"name": "Get Customer By ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/customers/1"
+					}
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/customers",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerCode\": \"CUST001\",\n    \"CompanyName\": \"Test Company\",\n    \"Country\": \"Turkey\",\n    \"City\": \"Istanbul\",\n    \"ContactName\": \"John Doe\",\n    \"Email\": \"john@example.com\",\n    \"Phone\": \"+90 555 123 4567\",\n    \"Notes\": \"Test customer\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/customers/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerCode\": \"CUST001\",\n    \"CompanyName\": \"Updated Company\",\n    \"Country\": \"Turkey\",\n    \"City\": \"Ankara\",\n    \"ContactName\": \"Jane Doe\",\n    \"Email\": \"jane@example.com\",\n    \"Phone\": \"+90 555 987 6543\",\n    \"Notes\": \"Updated customer\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/customers/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products"
+					}
+				},
+				{
+					"name": "Get Product By ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products/1"
+					}
+				},
+				{
+					"name": "Get Expiring Products",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/products/expiring?days=90"
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/products",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Brand\": \"Test Brand\",\n    \"Code\": \"PRD001\",\n    \"Description\": \"Test Product\",\n    \"Stock\": 100,\n    \"Price\": 99.99,\n    \"ExpiryDate\": \"2024-12-31\",\n    \"MinimumStock\": 10\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/products/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Brand\": \"Updated Brand\",\n    \"Code\": \"PRD001\",\n    \"Description\": \"Updated Product\",\n    \"Stock\": 150,\n    \"Price\": 149.99,\n    \"ExpiryDate\": \"2024-12-31\",\n    \"MinimumStock\": 20\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Stock",
+					"request": {
+						"method": "PATCH",
+						"url": "{{baseUrl}}/api/products/1/stock",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 50\n}"
+						}
+					}
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/products/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "Quotations",
+			"item": [
+				{
+					"name": "Get All Quotations",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/quotations"
+					}
+				},
+				{
+					"name": "Get Quotation By ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/quotations/1"
+					}
+				},
+				{
+					"name": "Get Customer Quotations",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/quotations/customer/1"
+					}
+				},
+				{
+					"name": "Create Quotation",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/quotations",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"QuotationNumber\": \"QT001\",\n    \"CustomerID\": 1,\n    \"QuotationDate\": \"2024-01-09\",\n    \"ValidUntil\": \"2024-02-09\",\n    \"TotalAmount\": 999.99,\n    \"Status\": \"Draft\",\n    \"Notes\": \"Test quotation\",\n    \"Details\": [\n        {\n            \"ProductID\": 1,\n            \"Quantity\": 5,\n            \"UnitPrice\": 99.99,\n            \"TotalPrice\": 499.95\n        },\n        {\n            \"ProductID\": 2,\n            \"Quantity\": 10,\n            \"UnitPrice\": 50.00,\n            \"TotalPrice\": 500.00\n        }\n    ]\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Quotation",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/quotations/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"QuotationNumber\": \"QT001\",\n    \"CustomerID\": 1,\n    \"QuotationDate\": \"2024-01-09\",\n    \"ValidUntil\": \"2024-03-09\",\n    \"TotalAmount\": 1499.99,\n    \"Status\": \"Sent\",\n    \"Notes\": \"Updated quotation\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Quotation Status",
+					"request": {
+						"method": "PATCH",
+						"url": "{{baseUrl}}/api/quotations/1/status",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Accepted\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Delete Quotation",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/quotations/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "Reminders",
+			"item": [
+				{
+					"name": "Get All Reminders",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders"
+					}
+				},
+				{
+					"name": "Get Reminder By ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/1"
+					}
+				},
+				{
+					"name": "Get Upcoming Reminders",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/upcoming"
+					}
+				},
+				{
+					"name": "Get Customer Reminders",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/api/reminders/customer/1"
+					}
+				},
+				{
+					"name": "Create Reminder",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/api/reminders",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerID\": 1,\n    \"Title\": \"Follow up call\",\n    \"Description\": \"Call about new quotation\",\n    \"DueDate\": \"2024-01-15T10:00:00\",\n    \"IsCompleted\": false,\n    \"Priority\": 1\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Reminder",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/api/reminders/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerID\": 1,\n    \"Title\": \"Updated follow up\",\n    \"Description\": \"Updated description\",\n    \"DueDate\": \"2024-01-20T14:00:00\",\n    \"IsCompleted\": true,\n    \"Priority\": 2\n}"
+						}
+					}
+				},
+				{
+					"name": "Delete Reminder",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/api/reminders/1"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

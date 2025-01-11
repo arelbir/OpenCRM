@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "ecelab-crm-collection",
+		"name": "EcelabCRM",
+		"description": "Ecelab CRM API Koleksiyonu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Excel Operations",
+			"description": "Excel şablonu indirme ve ürün import işlemleri",
+			"item": [
+				{
+					"name": "Download Product Template",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/template",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "products", "template"]
+						},
+						"description": "Ürün import şablonunu indirir. CSV formatında bir şablon döner."
+					}
+				},
+				{
+					"name": "Import Products from Excel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "./urunsablonu.csv",
+									"description": "CSV/Excel dosyası"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/import",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "products", "import"]
+						},
+						"description": "CSV/Excel dosyasından ürün import eder. Dosya formatı:\n- Brand: Marka (zorunlu)\n- Code: Ürün kodu (zorunlu)\n- Description: Açıklama\n- Price: Fiyat (zorunlu)\n- Stock: Stok miktarı\n- MinimumStock: Minimum stok seviyesi"
+					}
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"description": "Müşteri işlemleri",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/customers",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "customers"],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Müşteri adı veya firma adına göre arama",
+									"disabled": true
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"description": "Aktif/pasif müşterileri filtreleme",
+									"disabled": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CompanyName\": \"Test Company\",\n    \"ContactName\": \"John Doe\",\n    \"Email\": \"john@example.com\",\n    \"Phone\": \"+90 555 123 4567\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/customers",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "customers"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"description": "Ürün işlemleri",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "products"],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Ürün adı veya markaya göre arama",
+									"disabled": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Brand\": \"Test Brand\",\n    \"Code\": \"TEST001\",\n    \"Description\": \"Test Product\",\n    \"Price\": 100.00,\n    \"Stock\": 50,\n    \"MinimumStock\": 10\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "products"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Quotations",
+			"description": "Teklif işlemleri",
+			"item": [
+				{
+					"name": "Get All Quotations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quotations",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "quotations"],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Quotation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CustomerID\": 1,\n    \"QuotationDate\": \"2025-01-09\",\n    \"ValidUntil\": \"2025-02-09\",\n    \"Status\": \"Draft\",\n    \"Details\": [\n        {\n            \"ProductID\": 1,\n            \"Quantity\": 5,\n            \"UnitPrice\": 500.00,\n            \"Discount\": 10.00\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quotations",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "quotations"]
+						},
+						"description": "Status değerleri:\n- Draft: Taslak\n- Sent: Gönderildi\n- Accepted: Kabul edildi\n- Rejected: Reddedildi"
+					}
+				},
+				{
+					"name": "Update Quotation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Status\": \"Sent\",\n    \"ValidUntil\": \"2025-03-09\",\n    \"Details\": [\n        {\n            \"ProductID\": 1,\n            \"Quantity\": 10,\n            \"UnitPrice\": 500.00,\n            \"Discount\": 15.00\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quotations/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "quotations", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Reminders",
+			"description": "Hatırlatıcı işlemleri",
+			"item": [
+				{
+					"name": "Get All Reminders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reminders",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "reminders"],
+							"query": [
+								{
+									"key": "status",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Reminder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"Customer Meeting\",\n    \"Description\": \"Discuss new products\",\n    \"DueDate\": \"2025-01-20T14:00:00\",\n    \"Status\": \"Pending\",\n    \"Priority\": \"Medium\",\n    \"CustomerID\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reminders",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "reminders"]
+						},
+						"description": "Status değerleri:\n- Pending: Beklemede\n- Completed: Tamamlandı\n- Cancelled: İptal edildi\n\nPriority değerleri:\n- Low: Düşük\n- Medium: Orta\n- High: Yüksek"
+					}
+				},
+				{
+					"name": "Update Reminder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Title\": \"Updated Meeting\",\n    \"Description\": \"Updated meeting description\",\n    \"DueDate\": \"2025-01-20T14:00:00\",\n    \"Priority\": \"Medium\",\n    \"Status\": \"Pending\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reminders/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["api", "reminders", "1"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
